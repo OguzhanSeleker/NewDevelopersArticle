@@ -1,5 +1,5 @@
 ﻿using NDA.Core.Domain;
-using NDA.Domain.ArticleAggreagte;
+using NDA.Domain.ArticleAggregate;
 using NDA.Domain.DeveloperAggregate.Events;
 using System;
 using System.Collections.Generic;

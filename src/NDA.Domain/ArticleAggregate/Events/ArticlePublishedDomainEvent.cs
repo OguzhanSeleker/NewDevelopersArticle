@@ -1,13 +1,13 @@
 ﻿using NDA.Core.Domain;
 using System;
 
-namespace NDA.Domain.ArticleAggreagte.Events
+namespace NDA.Domain.ArticleAggregate.Events
 {
-    public class ArticleAddedDomainEvent : EventBase
+    public class ArticlePublishedDomainEvent : EventBase
     {
-
         public Guid ArticleId { get; private set; }
-        public ArticleAddedDomainEvent(Guid id)
+
+        public ArticlePublishedDomainEvent(Guid id)
         {
             ArticleId = id;
         }

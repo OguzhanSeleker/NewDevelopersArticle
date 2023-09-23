@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NDA.Domain.ArticleAggreagte
+namespace NDA.Domain.ArticleAggregate
 {
     public class CommentItem : Core.Domain.EntityRootBase, Core.Domain.IAggregateRoot
     {

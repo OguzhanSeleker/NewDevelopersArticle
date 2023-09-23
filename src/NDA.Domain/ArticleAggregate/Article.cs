@@ -1,7 +1,7 @@
 ﻿using NDA.Core.Domain;
 using NDA.Core.Helpers;
-using NDA.Domain.ArticleAggreagte.Events;
-using NDA.Domain.ArticleAggreagte.Exceptions;
+using NDA.Domain.ArticleAggregate.Events;
+using NDA.Domain.ArticleAggregate.Exceptions;
 using NDA.Domain.DeveloperAggregate;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NDA.Domain.ArticleAggreagte
+namespace NDA.Domain.ArticleAggregate
 {
     public sealed class Article : EntityRootBase
     {
@@ -30,7 +30,7 @@ namespace NDA.Domain.ArticleAggreagte
         {
             IsDeleted = true;
             DeletedDate = DateTimeHelper.NewDateTime();
-            this.AddDomainEvent(new ArticleDeletedDomainEvent(Id));
+            AddDomainEvent(new ArticleDeletedDomainEvent(Id));
         }
         public void Publish()
         {
@@ -47,7 +47,7 @@ namespace NDA.Domain.ArticleAggreagte
             Developer = developer;
             IsDeleted = false;
             Published = false;
-            this.AddDomainEvent(new ArticleAddedDomainEvent(Id));
+            AddDomainEvent(new ArticleAddedDomainEvent(Id));
         }
         public void Update(string articleTitle, string description, Picture titlePicture)
         {
@@ -63,7 +63,7 @@ namespace NDA.Domain.ArticleAggreagte
         {
             ContributerList ??= new List<Developer>();
             ContributerList.Add(developer);
-            this.AddDomainEvent(new ContributerAddedToArticleDomainEvent(Id, developer.Id));
+            AddDomainEvent(new ContributerAddedToArticleDomainEvent(Id, developer.Id));
         }
         public void RemoveContributer(Developer developer)
         {
@@ -76,7 +76,7 @@ namespace NDA.Domain.ArticleAggreagte
             Comments ??= new List<CommentItem>();
             CommentItem item = new CommentItem(content, developerId, Id);
             Comments.Add(item);
-            this.AddDomainEvent(new CommentAddedToArticleDomainEvent(item.Id));
+            AddDomainEvent(new CommentAddedToArticleDomainEvent(item.Id));
         }
         public void ClearComments()
         {
