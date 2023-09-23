@@ -1,11 +1,11 @@
 ﻿using NDA.Core.Domain;
-using NDA.Domain.ArticleAggreate;
-using NDA.Domain.Developers.Events;
+using NDA.Domain.ArticleAggreagte;
+using NDA.Domain.DeveloperAggregate.Events;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace NDA.Domain.Developers
+namespace NDA.Domain.DeveloperAggregate
 {
     public sealed class Developer : EntityRootBase
     {
@@ -37,19 +37,19 @@ namespace NDA.Domain.Developers
             FirstName = firstName ?? throw new ArgumentNullException(nameof(firstName));
             LastName = lastName ?? throw new ArgumentNullException(nameof(lastName));
             Title = title ?? throw new ArgumentNullException(nameof(title));
-            this.AddDomainEvent(new DeveloperAddedDomainEvent(this.Id));
+            this.AddDomainEvent(new DeveloperAddedDomainEvent(Id));
         }
 
-        public void Update(string firstName, string lastName,Title title)
+        public void Update(string firstName, string lastName, Title title)
         {
-            if(firstName != this.FirstName)
-                this.FirstName= firstName;
-            if(this.LastName != lastName) 
-                this.LastName= lastName;
-            if(!this.Title.Equals(title))
-                this.Title = title;
+            if (firstName != FirstName)
+                FirstName = firstName;
+            if (LastName != lastName)
+                LastName = lastName;
+            if (!Title.Equals(title))
+                Title = title;
 
-            this.AddDomainEvent(new DeveloperUpdatedDomainEvent(this.Id));
+            this.AddDomainEvent(new DeveloperUpdatedDomainEvent(Id));
         }
 
         public void AddArticle(Article article)
@@ -57,6 +57,6 @@ namespace NDA.Domain.Developers
             Articles ??= new List<Article>();
             Articles.Add(article);
         }
-        
+
     }
 }

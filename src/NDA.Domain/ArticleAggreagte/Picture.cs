@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NDA.Domain.ArticleAggreate
+namespace NDA.Domain.ArticleAggreagte
 {
     //Valur Object
     public class Picture : BaseValueObject

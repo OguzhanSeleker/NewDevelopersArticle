@@ -1,4 +1,4 @@
-﻿namespace NDA.Domain
+﻿namespace NDA.Domain.DeveloperAggregate
 {
     public enum eLevel
     {

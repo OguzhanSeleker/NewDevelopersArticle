@@ -1,8 +1,8 @@
 ﻿using NDA.Core.Domain;
 using NDA.Core.Helpers;
-using NDA.Domain.ArticleAggreate.Events;
-using NDA.Domain.ArticleAggreate.Exceptions;
-using NDA.Domain.Developers;
+using NDA.Domain.ArticleAggreagte.Events;
+using NDA.Domain.ArticleAggreagte.Exceptions;
+using NDA.Domain.DeveloperAggregate;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NDA.Domain.ArticleAggreate
+namespace NDA.Domain.ArticleAggreagte
 {
     public sealed class Article : EntityRootBase
     {
@@ -28,15 +28,15 @@ namespace NDA.Domain.ArticleAggreate
 
         public void Delete()
         {
-            this.IsDeleted = true;
-            this.DeletedDate = DateTimeHelper.NewDateTime();
-            this.AddDomainEvent(new ArticleDeletedDomainEvent(this.Id));
+            IsDeleted = true;
+            DeletedDate = DateTimeHelper.NewDateTime();
+            this.AddDomainEvent(new ArticleDeletedDomainEvent(Id));
         }
         public void Publish()
         {
-            this.Published = true;
-            this.PublishedDate = DateTimeHelper.NewDateTime();
-            this.AddDomainEvent(new ArticlePublishedDomainEvent(this.Id));
+            Published = true;
+            PublishedDate = DateTimeHelper.NewDateTime();
+            AddDomainEvent(new ArticlePublishedDomainEvent(Id));
         }
 
         public Article(string articleTitle, string description, Picture titlePicture, Developer developer)
@@ -47,7 +47,7 @@ namespace NDA.Domain.ArticleAggreate
             Developer = developer;
             IsDeleted = false;
             Published = false;
-            this.AddDomainEvent(new ArticleAddedDomainEvent(this.Id));
+            this.AddDomainEvent(new ArticleAddedDomainEvent(Id));
         }
         public void Update(string articleTitle, string description, Picture titlePicture)
         {
@@ -63,25 +63,25 @@ namespace NDA.Domain.ArticleAggreate
         {
             ContributerList ??= new List<Developer>();
             ContributerList.Add(developer);
-            this.AddDomainEvent(new ContributerAddedToArticleDomainEvent(this.Id, developer.Id));
+            this.AddDomainEvent(new ContributerAddedToArticleDomainEvent(Id, developer.Id));
         }
         public void RemoveContributer(Developer developer)
         {
             ContributerList?.Remove(developer);
-            this.AddDomainEvent(new ContributerRemovedOnArticleDomainEvent(this.Id, developer.Id));
+            AddDomainEvent(new ContributerRemovedOnArticleDomainEvent(Id, developer.Id));
         }
 
         public void AddComment(string content, Guid developerId)
         {
             Comments ??= new List<CommentItem>();
-            CommentItem item = new CommentItem(content, developerId, this.Id);
+            CommentItem item = new CommentItem(content, developerId, Id);
             Comments.Add(item);
             this.AddDomainEvent(new CommentAddedToArticleDomainEvent(item.Id));
         }
         public void ClearComments()
         {
             Comments?.Clear();
-            this.AddDomainEvent(new CommentsClearedOnArticleDomainEvent(this.Id));
+            AddDomainEvent(new CommentsClearedOnArticleDomainEvent(Id));
         }
         public void RemoveComment(Guid id)
         {
@@ -90,7 +90,7 @@ namespace NDA.Domain.ArticleAggreate
             else
                 throw new CommentNotFoundException(id);
 
-            this.AddDomainEvent(new CommentRemovedOnArticleDomainEvent(id));
+            AddDomainEvent(new CommentRemovedOnArticleDomainEvent(id));
         }
     }
 }

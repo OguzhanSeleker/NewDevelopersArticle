@@ -1,7 +1,7 @@
 ﻿using NDA.Core.Domain;
 using System;
 
-namespace NDA.Domain.ArticleAggreate.Events
+namespace NDA.Domain.ArticleAggreagte.Events
 {
     public class CommentAddedToArticleDomainEvent : EventBase
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace NDA.Domain.ArticleAggreate.Exceptions
+namespace NDA.Domain.ArticleAggreagte.Exceptions
 {
     [Serializable]
     public class CommentNotFoundException : Exception

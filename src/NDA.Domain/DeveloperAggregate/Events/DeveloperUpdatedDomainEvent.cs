@@ -1,7 +1,7 @@
 ﻿using NDA.Core.Domain;
 using System;
 
-namespace NDA.Domain.Developers.Events
+namespace NDA.Domain.DeveloperAggregate.Events
 {
     public class DeveloperUpdatedDomainEvent : EventBase
     {
@@ -9,7 +9,7 @@ namespace NDA.Domain.Developers.Events
 
         public DeveloperUpdatedDomainEvent(Guid id)
         {
-            this.DeveloperId = id;
+            DeveloperId = id;
         }
     }
 }

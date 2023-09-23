@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NDA.Domain.ArticleAggreate
+namespace NDA.Domain.ArticleAggreagte
 {
     public class CommentItem : Core.Domain.EntityRootBase, Core.Domain.IAggregateRoot
     {
@@ -27,7 +27,7 @@ namespace NDA.Domain.ArticleAggreate
 
         public void Update(string content)
         {
-            if(string.IsNullOrEmpty(content))
+            if (string.IsNullOrEmpty(content))
                 throw new ArgumentNullException(nameof(content));
             Content = content;
             Updated = DateTimeHelper.NewDateTime();

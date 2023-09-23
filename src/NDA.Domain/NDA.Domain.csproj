@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <Folder Include="Comments\" />
-    <Folder Include="Developers\Exceptions\" />
+    <Folder Include="DeveloperAggregate\Exceptions\" />
     <Folder Include="Likes\" />
   </ItemGroup>
 

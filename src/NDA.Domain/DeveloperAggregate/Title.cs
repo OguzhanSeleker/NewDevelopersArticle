@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace NDA.Domain.Developers
+namespace NDA.Domain.DeveloperAggregate
 {
     //Value Object
     public class Title
@@ -12,7 +12,7 @@ namespace NDA.Domain.Developers
         public string TitleDescription { get; private set; }
 
         private Title() { }
-        public Title(string titleName,string titleDescription, eLevel level) { TitleName = titleName; TitleDescription = titleDescription; Level = level; }
+        public Title(string titleName, string titleDescription, eLevel level) { TitleName = titleName; TitleDescription = titleDescription; Level = level; }
 
     }
 }

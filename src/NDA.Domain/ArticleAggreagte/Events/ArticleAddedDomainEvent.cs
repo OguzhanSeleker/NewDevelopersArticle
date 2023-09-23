@@ -1,7 +1,7 @@
 ﻿using NDA.Core.Domain;
 using System;
 
-namespace NDA.Domain.ArticleAggreate.Events
+namespace NDA.Domain.ArticleAggreagte.Events
 {
     public class ArticleAddedDomainEvent : EventBase
     {
@@ -9,7 +9,7 @@ namespace NDA.Domain.ArticleAggreate.Events
         public Guid ArticleId { get; private set; }
         public ArticleAddedDomainEvent(Guid id)
         {
-            this.ArticleId = id;
+            ArticleId = id;
         }
     }
 }
