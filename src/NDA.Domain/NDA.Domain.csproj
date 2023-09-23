@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+	</PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Developers\Events\" />
+    <Folder Include="Comments\" />
+    <Folder Include="Likes\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NDA.Core\NDA.Core.csproj" />
+  </ItemGroup>
+
+</Project>
