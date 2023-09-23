@@ -22,7 +22,7 @@ namespace NDA.Core.Domain
         public DateTime CreatedAt { get; } = DateTime.UtcNow;
         public string CorrelationId { get; init; }
         public IDictionary<string, object> MetaData { get; } = new Dictionary<string, object>();
-        public abstract void Flatten();
+        //public abstract void Flatten();
     }
 
     public class EventWrapper : INotification

@@ -1,13 +1,14 @@
-﻿using System;
+﻿using NDA.Core.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NDA.Domain.Articles
+namespace NDA.Domain.ArticleAggreate
 {
     //Valur Object
-    public class Picture
+    public class Picture : BaseValueObject
     {
         public string Name { get; private set; }
         public string Base64 { get; private set; }
@@ -24,6 +25,12 @@ namespace NDA.Domain.Articles
                 Base64 = base64;
             if (Name != name)
                 Name = name;
+        }
+
+        protected override IEnumerable<object> GetEqualityComponents()
+        {
+            yield return Name;
+            yield return Base64;
         }
     }
 }

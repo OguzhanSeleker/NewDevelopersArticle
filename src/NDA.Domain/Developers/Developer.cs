@@ -1,4 +1,6 @@
 ﻿using NDA.Core.Domain;
+using NDA.Domain.ArticleAggreate;
+using NDA.Domain.Developers.Events;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -17,6 +19,16 @@ namespace NDA.Domain.Developers
                 return $"{FirstName} {LastName}";
             }
         }
+        public string FullQualifiedName
+        {
+            get
+            {
+                return $"{Title.Level.ToString()} {Title.TitleName} {FullName}";
+            }
+        }
+        public List<Article> Articles { get; private set; }
+
+        public List<CommentItem> Comments { get; private init; }
 
         private Developer() { }
 
@@ -25,6 +37,7 @@ namespace NDA.Domain.Developers
             FirstName = firstName ?? throw new ArgumentNullException(nameof(firstName));
             LastName = lastName ?? throw new ArgumentNullException(nameof(lastName));
             Title = title ?? throw new ArgumentNullException(nameof(title));
+            this.AddDomainEvent(new DeveloperAddedDomainEvent(this.Id));
         }
 
         public void Update(string firstName, string lastName,Title title)
@@ -35,6 +48,15 @@ namespace NDA.Domain.Developers
                 this.LastName= lastName;
             if(!this.Title.Equals(title))
                 this.Title = title;
+
+            this.AddDomainEvent(new DeveloperUpdatedDomainEvent(this.Id));
         }
+
+        public void AddArticle(Article article)
+        {
+            Articles ??= new List<Article>();
+            Articles.Add(article);
+        }
+        
     }
 }
